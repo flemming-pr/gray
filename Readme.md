@@ -18,3 +18,6 @@ Some examples of what you can send to the server are located in the examples fol
 ```bash
 go run examples/your_example.go
 ```
+
+## Screenshot
+![Screenshot](assets/Screenshot.png)
