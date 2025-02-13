@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
+	"os"
 )
 
 type Message struct {
@@ -27,7 +28,16 @@ func (m Message) Send(payload interface{}) {
 		return
 	}
 
-	http.Post("http://localhost:23517", "application/json", bytes.NewReader(body))
+	// Check if we are in a docker container
+	url := "http://localhost:23517"
+	if _, err := os.Stat("/.dockerenv"); err == nil {
+		url = "http://host.docker.internal:23517"
+	}
+
+	_, err = http.Post(url, "application/json", bytes.NewReader(body))
+	if err != nil {
+		fmt.Println("Gray: could not send message", err)
+	}
 }
 
 func WithColor(color string) Message {
