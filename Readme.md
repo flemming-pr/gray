@@ -35,3 +35,7 @@ go run examples/your_example.go
 
 ## Credits
 It is inspired by [Ray](https://myray.app/) from [Spatie](https://spatie.be/).
+
+Used libraries:
+- [https://github.com/charmbracelet/lipgloss](https://github.com/charmbracelet/lipgloss)
+- [https://github.com/spf13/cobra](https://github.com/spf13/cobra)
