@@ -5,6 +5,11 @@
 - First start the server.
 - Copy the gray folder into your porject. You may want to add it to your .gitignore to prevent it from being uploaded to your repository. This is because the gray folder is a development tool and not a part of your project. Also tests will fail if you didn't remove gray commands from your code.
 
+You can also use the following command to copy the gray folder into your project:
+```bash
+go run main.go copy PATH_TO_YOUR_PROJECT
+```
+
 To send something to the server, you can use the following code:
 ```go
 
