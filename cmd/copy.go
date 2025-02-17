@@ -94,7 +94,7 @@ func updateGitignore(dst string) error {
 		}
 	}
 
-	if _, err := file.WriteString("\ngray\n"); err != nil {
+	if _, err := file.WriteString("\n# https://github.com/flemming-pr/gray\ngray\n"); err != nil {
 		return err
 	}
 
