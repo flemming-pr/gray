@@ -16,7 +16,7 @@ func main() {
 
 ```
 
-Some examples of what you can send to the server are located in the examples folder. You can run them by using the following command:
+Some examples of what you can send to the server are located in the `examples` folder. You can run them by using the following command:
 ```bash
 go run examples/your_example.go
 ```

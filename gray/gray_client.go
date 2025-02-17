@@ -9,8 +9,9 @@ import (
 )
 
 type Message struct {
-	Payload  interface{}            `json:"payload"`
-	Metadata map[string]interface{} `json:"metadata"`
+	Payload     interface{}            `json:"payload"`
+	Metadata    map[string]interface{} `json:"metadata"`
+	Additionals map[string]interface{} `json:"additionals"`
 }
 
 func (m Message) Send(payload interface{}) {
@@ -40,10 +41,40 @@ func (m Message) Send(payload interface{}) {
 	}
 }
 
+func (m Message) WithColor(color string) Message {
+	if m.Metadata == nil {
+		m.Metadata = map[string]interface{}{}
+	}
+
+	m.Metadata["color"] = color
+
+	return m
+}
+
+func (m Message) WithAdditionals(key string, value interface{}) Message {
+	if m.Additionals == nil {
+		m.Additionals = map[string]interface{}{}
+	}
+
+	m.Additionals[key] = value
+
+	return m
+}
+
 func WithColor(color string) Message {
 	message := Message{
 		Metadata: map[string]interface{}{
 			"color": color,
+		},
+	}
+
+	return message
+}
+
+func WithAdditionals(key string, value interface{}) Message {
+	message := Message{
+		Additionals: map[string]interface{}{
+			key: value,
 		},
 	}
 

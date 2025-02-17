@@ -7,6 +7,7 @@ func main() {
 	sendString()
 	sendStringWithColor()
 	sendStruct()
+	sendWithAdditional()
 	sendMap()
 }
 
@@ -36,6 +37,19 @@ func sendStruct() {
 	}
 
 	gray.Send(testStruct)
+}
+
+func sendWithAdditional() {
+	testMap := map[string]interface{}{
+		"foo": "bar",
+		"23":  42,
+	}
+
+	gray.WithColor("green").WithAdditionals("foo", testMap).Send("Hello World")
+}
+
+func sendWithAdditionalsAndColor() {
+	gray.WithColor("green").WithAdditionals("foo", "bar").Send("Hello World")
 }
 
 func sendMap() {

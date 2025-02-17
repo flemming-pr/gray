@@ -18,6 +18,11 @@ var defaultStyle = lipgloss.NewStyle().
 	PaddingLeft(4).
 	PaddingRight(4)
 
+var defaultStyleWithBorderBottom = defaultStyle.
+	BorderStyle(lipgloss.NormalBorder()).
+	BorderForeground(lipgloss.Color("#FAFAFA")).
+	BorderBottom(true)
+
 var headerStyle = lipgloss.NewStyle()
 
 var welcomeStyle = lipgloss.NewStyle().
@@ -66,6 +71,13 @@ func renderMessage(message gray.Message) {
 		headerStyle.Render(time.Now().Format(time.TimeOnly)),
 		headerStyle.Render(message.Metadata["name"].(string)),
 	)
+
+	for key, value := range message.Additionals {
+		table.Row(
+			defaultStyleWithBorderBottom.Render(key),
+			defaultStyleWithBorderBottom.Render(fmt.Sprintf("%v", value)),
+		)
+	}
 
 	table.Row("", defaultStyle.Render(string(payloadJson)))
 
