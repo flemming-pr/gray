@@ -37,7 +37,7 @@ func init() {
 }
 
 func copyDir(src string, dst string) error {
-	dst += "/gray"
+	dst = filepath.Join(dst, "gray")
 	return filepath.Walk(src, func(path string, info os.FileInfo, err error) error {
 		if err != nil {
 			return err
