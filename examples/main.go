@@ -42,7 +42,7 @@ func sendStruct() {
 func sendWithAdditional() {
 	gray.WithAdditionals("id", "6f54a18f-0af5-449d-94ba-fa2b45fc912f").Send("Test")
 
-	testMap := map[string]interface{}{
+	testMap := map[string]any{
 		"foo": "bar",
 		"23":  42,
 	}
@@ -55,7 +55,7 @@ func sendWithAdditionalsAndColor() {
 }
 
 func sendMap() {
-	newMap := []interface{}{
+	newMap := []any{
 		"Hello",
 		"World",
 		23,

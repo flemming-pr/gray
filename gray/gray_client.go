@@ -9,15 +9,15 @@ import (
 )
 
 type Message struct {
-	Payload     interface{}            `json:"payload"`
-	Metadata    map[string]interface{} `json:"metadata"`
-	Additionals map[string]interface{} `json:"additionals"`
+	Payload     any            `json:"payload"`
+	Metadata    map[string]any `json:"metadata"`
+	Additionals map[string]any `json:"additionals"`
 }
 
-func (m Message) Send(payload interface{}) {
+func (m Message) Send(payload any) {
 	m.Payload = payload
 	if m.Metadata == nil {
-		m.Metadata = map[string]interface{}{}
+		m.Metadata = map[string]any{}
 	}
 
 	m.Metadata["name"] = fmt.Sprintf("%T", m.Payload)
@@ -43,7 +43,7 @@ func (m Message) Send(payload interface{}) {
 
 func (m Message) WithColor(color string) Message {
 	if m.Metadata == nil {
-		m.Metadata = map[string]interface{}{}
+		m.Metadata = map[string]any{}
 	}
 
 	m.Metadata["color"] = color
@@ -51,9 +51,9 @@ func (m Message) WithColor(color string) Message {
 	return m
 }
 
-func (m Message) WithAdditionals(key string, value interface{}) Message {
+func (m Message) WithAdditionals(key string, value any) Message {
 	if m.Additionals == nil {
-		m.Additionals = map[string]interface{}{}
+		m.Additionals = map[string]any{}
 	}
 
 	m.Additionals[key] = value
@@ -63,7 +63,7 @@ func (m Message) WithAdditionals(key string, value interface{}) Message {
 
 func WithColor(color string) Message {
 	message := Message{
-		Metadata: map[string]interface{}{
+		Metadata: map[string]any{
 			"color": color,
 		},
 	}
@@ -71,9 +71,9 @@ func WithColor(color string) Message {
 	return message
 }
 
-func WithAdditionals(key string, value interface{}) Message {
+func WithAdditionals(key string, value any) Message {
 	message := Message{
-		Additionals: map[string]interface{}{
+		Additionals: map[string]any{
 			key: value,
 		},
 	}
@@ -81,7 +81,7 @@ func WithAdditionals(key string, value interface{}) Message {
 	return message
 }
 
-func Send(payload interface{}) {
+func Send(payload any) {
 	message := Message{}
 
 	message.Send(payload)
